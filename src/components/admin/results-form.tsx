@@ -71,7 +71,10 @@ export function ResultsForm({ matches }: { matches: Match[] }) {
   }
 
   async function saveAll() {
-    const ids = matches.map((m) => m.id);
+    const filled = matches.filter((m) => state[m.id].a !== "" && state[m.id].b !== "");
+    if (filled.length === 0) return;
+
+    const ids = filled.map((m) => m.id);
     setState((prev) => {
       const next = { ...prev };
       ids.forEach((id) => { next[id] = { ...next[id], status: "saving" }; });
@@ -79,7 +82,7 @@ export function ResultsForm({ matches }: { matches: Match[] }) {
     });
     try {
       await saveMatches(
-        matches.map((m) => ({
+        filled.map((m) => ({
           match_id: m.id,
           team_a_goals: parseGoals(state[m.id].a),
           team_b_goals: parseGoals(state[m.id].b),
@@ -104,7 +107,7 @@ export function ResultsForm({ matches }: { matches: Match[] }) {
   return (
     <div className="grid gap-4">
       <div className="flex justify-end">
-        <Button onClick={saveAll} disabled={isSavingAll}>
+        <Button type="button" onClick={saveAll} disabled={isSavingAll}>
           {isSavingAll ? <Loader2 className="animate-spin" /> : <ShieldCheck />}
           Salvar tudo
         </Button>
@@ -166,6 +169,7 @@ export function ResultsForm({ matches }: { matches: Match[] }) {
                   aria-label={`Gols ${match.team_b.name}`}
                 />
                 <Button
+                  type="button"
                   onClick={() => saveOne(match)}
                   disabled={s.status === "saving"}
                   variant={s.status === "error" ? "destructive" : "default"}
