@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f7f8fa;
+  --foreground: #111827;
+  --card: #ffffff;
+  --card-foreground: #111827;
+  --muted: #eef1f5;
+  --muted-foreground: #667085;
+  --primary: #12b76a;
+  --primary-foreground: #06190f;
+  --secondary: #e6f4ff;
+  --secondary-foreground: #0b4a6f;
+  --destructive: #e5484d;
+  --destructive-foreground: #ffffff;
+  --border: #d9dee7;
+  --input: #d9dee7;
+  --ring: #12b76a;
+  --accent: #1d4ed8;
+}
+
+.dark {
+  --background: #0d1117;
+  --foreground: #eef2f7;
+  --card: #151b23;
+  --card-foreground: #eef2f7;
+  --muted: #202938;
+  --muted-foreground: #9aa4b2;
+  --primary: #32d583;
+  --primary-foreground: #062c18;
+  --secondary: #182537;
+  --secondary-foreground: #b9d9ff;
+  --destructive: #f04438;
+  --destructive-foreground: #ffffff;
+  --border: #273244;
+  --input: #303b4f;
+  --ring: #32d583;
+  --accent: #60a5fa;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  background: var(--background);
+}
+
+body {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, color-mix(in srgb, var(--primary) 14%, transparent), transparent 32rem),
+    var(--background);
+  color: var(--foreground);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--primary) 28%, transparent);
+}
