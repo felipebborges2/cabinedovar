@@ -106,7 +106,7 @@ export function ResultsForm({ matches }: { matches: Match[] }) {
 
   return (
     <div className="grid gap-4">
-      <div className="flex justify-end">
+      <div className="sticky top-16 z-10 flex justify-end rounded-lg border border-border bg-background/95 p-3 shadow-sm backdrop-blur">
         <Button type="button" onClick={saveAll} disabled={isSavingAll}>
           {isSavingAll ? <Loader2 className="animate-spin" /> : <ShieldCheck />}
           Salvar tudo
